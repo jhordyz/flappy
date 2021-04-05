@@ -1,6 +1,6 @@
 var contexto = document.getElementById("lienzoJuego").getContext("2d")
 contexto.canvas.width = 300
-contexto.canvas.height = 700
+contexto.canvas.height = 530
 var FPS =60
 var gravedad =1.5
 var personaje = {
@@ -30,13 +30,12 @@ personaje.y -=35
 //BUCLE//
 setInterval(loop,1000/FPS)
 function loop() {
-    contexto.clearRect(0,0,300,700)
-
-    //PERSONAJE//
-    contexto.fillStyle="rgba(100,0,0,1)"
-    contexto.fillRect(personaje.x,personaje.y,personaje.w,personaje.h)
+    contexto.clearRect(0,0,300,530)
     //FONDO
     contexto.drawImage(background,0,0)
+    contexto.drawImage(suelo,0,contexto.canvas.height - suelo.height)
+    //PERSONAJE//
+    contexto.drawImage(bird,personaje.x,personaje.y)
     //TUBERIAS
     personaje.y += gravedad
 }
