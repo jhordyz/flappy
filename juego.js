@@ -1,13 +1,19 @@
 var contexto = document.getElementById("lienzoJuego").getContext("2d")
 contexto.canvas.width = 300
 contexto.canvas.height = 530
+//VARIALES
 var FPS =60
 var gravedad =1.5
 var personaje = {
-    x:100,
+    x:50,
     y:150,
     w:50,
     h:50
+}
+var tuberias = new Array()
+tuberias [0] = {
+    x:contexto.canvas.width,
+    y:0
 }
 
 //VARIABLES IMAGENES//
@@ -37,6 +43,22 @@ function loop() {
     //PERSONAJE//
     contexto.drawImage(bird,personaje.x,personaje.y)
     //TUBERIAS
+    for(var i = 0; i < tuberias.length ; i++){
+        var constante = tuberiaNorte.height + 80
+            contexto.drawImage(tuberiaNorte,tuberias[i].x,tuberias[i].y)
+            contexto.drawImage(tuberiaSur,tuberias[i].x,tuberias[i].y + constante)
+            tuberias[i].x--
+
+        if(tuberias[i].x == 150){
+            tuberias.push({
+                x:contexto.canvas.width,
+                y: Math.floor(Math.random()*tuberiaNorte.height) - tuberiaNorte.height
+            })
+        }
+
+    }
+    
+    //CONDICIONES
     personaje.y += gravedad
 }
 
