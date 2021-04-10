@@ -17,6 +17,10 @@ tuberias [0] = {
     y:0
 }
 
+
+//VARIABLES AUDIOS
+var punto = new Audio()
+punto.src = "audios/punto.mp3"
 //VARIABLES IMAGENES//
 var bird = new Image()
 bird.src = "imagenes/bird.png"
@@ -49,6 +53,9 @@ function loop() {
             contexto.drawImage(tuberiaNorte,tuberias[i].x,tuberias[i].y)
             contexto.drawImage(tuberiaSur,tuberias[i].x,tuberias[i].y + constante)
             tuberias[i].x--
+            if(tuberias[i].y + tuberiaNorte.height < 80){
+               tuberias[i].y = 0
+            }
 
         if(tuberias[i].x == 150){
             tuberias.push({
@@ -63,6 +70,10 @@ function loop() {
                 personaje.y + bird.height >= tuberias[i].y + constante)
                 || personaje.y + bird.height >= contexto.canvas.height - suelo.height){
             location.reload()
+        }
+        if(tuberias[i].x == 50){
+            score++
+            punto.play()
         }
     }
     
